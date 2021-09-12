@@ -1,32 +1,53 @@
-# Prerequisites
-*.d
-
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
+﻿# Папки
+/.vs
+/3rd_party/_LIB
+/3rd_party/_TEMP
+/src/_LIB
+/src/_TEMP
+/bin*
 
 # Precompiled Headers
-*.gch
-*.pch
+*.ipch
 
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
+# Всякий ненужный мусор:
+*.VC.*
+*.suo
+*.user
+*.exp
+*.aps
+*.TMP
+*.pdb
+*.idb
 *.lib
-
-# Executables
+*.obj
+*.dll
+*.log
+*.tlog
+*.asm
+*.recipe
+*.res
+*.iobj
+*.pch
+*.cod
 *.exe
+*.cache
+*.txt
+*.json
+*.sqlite
 *.out
-*.app
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+/gamedata
+/gamedata*
+/_appdata_
+/fsgame*
+/mods
