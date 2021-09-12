@@ -860,8 +860,7 @@ void CApplication::OnEvent(EVENT E, u64 P1, u64 P2)
 		
 		for (u32 i=0; i<Levels.size(); i++)
 		{
-			// xr_free(Levels[i].folder	);
-			xr_free(Levels[i].name	);
+			xr_free(Levels[i].folder);
 		}
 	}
 	else if(E==eStart) 
