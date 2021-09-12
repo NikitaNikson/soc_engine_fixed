@@ -8,7 +8,7 @@
 #include "stdafx.h"
 #include "igame_level.h"
 #include "igame_persistent.h"
-
+#include "DiscordRPC.hpp"
 #include "xr_input.h"
 #include "xr_ioconsole.h"
 #include "x_ray.h"
@@ -44,9 +44,9 @@ static int days_in_month[12] = {
 	31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31
 };
 
-static int start_day	= 31;	// 31
-static int start_month	= 1;	// January
-static int start_year	= 1999;	// 1999
+static int start_day	= 1;	// 1
+static int start_month	= 7;	// July
+static int start_year	= 2017;	// 2017
 
 #ifdef NDEBUG
 namespace std {
@@ -256,6 +256,7 @@ void Startup					( )
 	// Destroy LOGO
 	DestroyWindow				(logoWindow);
 	logoWindow					= NULL;
+	Discord.Init();
 
 	// Main cycle
 	CheckCopyProtection			( );
@@ -859,7 +860,7 @@ void CApplication::OnEvent(EVENT E, u64 P1, u64 P2)
 		
 		for (u32 i=0; i<Levels.size(); i++)
 		{
-			xr_free(Levels[i].folder	);
+			// xr_free(Levels[i].folder	);
 			xr_free(Levels[i].name	);
 		}
 	}
@@ -1029,10 +1030,13 @@ void CApplication::Level_Append		(LPCSTR folder)
 		FS.exist("$game_levels$",N4)	
 		)
 	{
+		/*
 		sLevelInfo			LI;
 		LI.folder			= xr_strdup(folder);
 		LI.name				= 0;
 		Levels.push_back	(LI);
+		*/
+		Levels.emplace_back(sLevelInfo{ xr_strdup(folder) });
 	}
 }
 

@@ -388,6 +388,7 @@
     <ClInclude Include="x_ray.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="psystem.h" />
+    <ClInclude Include="DiscordRPC.hpp" />
     <ClInclude Include="IInputReceiver.h" />
     <ClInclude Include="xr_input.h" />
     <ClInclude Include="ISheduled.h" />
@@ -504,6 +505,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="defines.cpp" />
+    <ClCompile Include="DiscordRPC.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug_Dedicated|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

@@ -139,6 +139,9 @@
     <Filter Include="Engine\Noise">
       <UniqueIdentifier>{37a4cc23-0703-43ab-8d78-3d16ebeba5a1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Discord">
+      <UniqueIdentifier>{43bfe79c-eeb5-4f94-934d-a536c732336c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="_d3d_extensions.h">
@@ -503,6 +506,9 @@
     </ClInclude>
     <ClInclude Include="perlin.h">
       <Filter>Engine\Noise</Filter>
+    </ClInclude>
+    <ClInclude Include="DiscordRPC.hpp">
+      <Filter>Discord</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

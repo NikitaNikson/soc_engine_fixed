@@ -2,6 +2,7 @@
 #define _STD_EXT_internal
 
 #define	BREAK_AT_STRCMP
+XRCORE_API std::string StringToUTF8(const char* in);
 #ifndef DEBUG
 #undef  BREAK_AT_STRCMP
 #endif

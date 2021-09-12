@@ -12,7 +12,8 @@
 #include "ui/UIPDAWnd.h"
 #include "encyclopedia_article.h"
 #include "ui/UIEventsWnd.h"
-
+#include "../DiscordRPC.hpp"
+#include "string_table.h"
 #pragma warning(push)
 #pragma warning(disable:4995)
 #include <malloc.h>
@@ -39,7 +40,7 @@ CGameTaskManager::CGameTaskManager()
 	m_gametasks					= xr_new<CGameTaskWrapper>();
 	m_flags.zero				();
 	m_flags.set					(eChanged, TRUE);
-	if(g_active_task_id.size())	SetActiveTask(g_active_task_id, g_active_task_objective_id);
+	// if(g_active_task_id.size())	SetActiveTask(g_active_task_id, g_active_task_objective_id);
 }
 
 CGameTaskManager::~CGameTaskManager()
@@ -50,6 +51,8 @@ CGameTaskManager::~CGameTaskManager()
 void CGameTaskManager::initialize(u16 id)
 {
 	m_gametasks->registry().init(id);// actor's id
+	if (g_active_task_id.size())
+		SetActiveTask(g_active_task_id, g_active_task_objective_id);
 }
 
 GameTasks&	CGameTaskManager::GameTasks	() 
@@ -309,6 +312,7 @@ void CGameTaskManager::SetActiveTask(const TASK_ID& id, u16 idx)
 		if(ml)
 			ml->EnablePointer();
 	}
+	Discord.Set_active_task_text(CStringTable().translate(o ? o->description : "st_no_active_task").c_str());
 }
 
 SGameTaskObjective* CGameTaskManager::ActiveObjective()

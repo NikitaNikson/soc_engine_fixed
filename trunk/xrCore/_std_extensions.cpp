@@ -2,6 +2,7 @@
 #pragma hdrstop
 
 #include <time.h>
+#include <codecvt>
 
 #ifdef BREAK_AT_STRCMP
 int								xr_strcmp				( const char* S1, const char* S2 )
@@ -37,4 +38,16 @@ char*							timestamp				(string64& dest)
 		if (':'==temp[it]) temp[it]='-';
 	strcat		( dest, temp);
 	return dest;
+}
+
+// Added by BashyOne on 17.08.2021 (23:59)
+// For Discord
+std::string StringToUTF8(const char* in)
+{
+	const size_t len = strlen(in);
+	static const std::locale locale{ "" };
+	using wcvt = std::wstring_convert<std::codecvt_utf8<wchar_t>, wchar_t>;
+	std::wstring wstr(len, L'\0');
+	//	std::use_facet<std::ctype<wchar_t>>(locale).widen(in, in + len, wstr.data());
+	return wcvt{}.to_bytes(wstr.data(), wstr.data() + wstr.size());
 }

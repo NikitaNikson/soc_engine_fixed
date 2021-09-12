@@ -15,9 +15,11 @@
 #include "weaponhud.h"
 #include "stalker_animation_data_storage.h"
 #include "stalker_velocity_holder.h"
-
+#include "../DiscordRPC.hpp"
 #include "../CameraManager.h"
 #include "actor.h"
+#include "string_table.h"
+#include "../x_ray.h"
 
 #ifndef MASTER_GOLD
 #	include "custommonster.h"
@@ -335,7 +337,8 @@ void CGamePersistent::OnFrame	()
 #ifdef DEBUG
 	++m_frame_counter;
 #endif
-	if (!g_dedicated_server && !m_intro_event.empty())	m_intro_event();
+	if (!g_dedicated_server && !m_intro_event.empty())
+		m_intro_event();
 
 	if( !m_pMainMenu->IsActive() )
 		m_pMainMenu->DestroyInternal(false);
@@ -512,13 +515,15 @@ void CGamePersistent::OnRenderPPUI_PP()
 {
 	MainMenu()->OnRenderPPUI_PP();
 }
-#include "string_table.h"
-#include "../x_ray.h"
+
 void CGamePersistent::LoadTitle(LPCSTR str)
 {
+	const char* tittle = CStringTable().translate(str).c_str();
 	string512			buff;
-	sprintf_s				(buff, "%s...", CStringTable().translate(str).c_str());
-	pApp->LoadTitleInt	(buff);
+	sprintf_s(buff, "%s...", CStringTable().translate(str).c_str());
+	pApp->LoadTitleInt(buff);
+
+	Discord.Update(tittle);
 }
 
 bool CGamePersistent::CanBePaused()

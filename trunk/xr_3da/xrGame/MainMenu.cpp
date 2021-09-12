@@ -16,7 +16,7 @@
 #include "gamespy/GameSpy_Available.h"
 #include "gamespy/CdkeyDecode/cdkeydecode.h"
 #include "string_table.h"
-
+#include "../DiscordRPC.hpp"
 #include "object_broker.h"
 
 //#define DEMO_BUILD
@@ -181,6 +181,11 @@ void CMainMenu::Activate	(bool bActivate)
 			CCameraManager::ResetPP			();
 		};
 		Device.seqRender.Add				(this, 4); // 1-console 2-cursor 3-tutorial
+
+		if (!g_pGameLevel) {
+			Discord.Update("Main Menu");
+			Discord.Set_active_task_text(nullptr);
+		}
 
 	}else{
 		m_deactivated_frame					= Device.dwFrame;

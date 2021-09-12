@@ -111,7 +111,7 @@ void xrCore::_initialize	(LPCSTR _ApplicationName, LogCallback cb, BOOL init_fs,
 	#endif
 #endif
 		FS._initialize		(flags,0,fs_fname);
-		Msg					("'%s' build %d, %s\n","xrCore",build_id, build_date);
+		Msg("Full Weapons Reanimation '%s' build %d, %s\n", "xrCore (x32)", build_id, build_date);
 		EFS._initialize		();
 #ifdef DEBUG
     #ifndef	_EDITOR
@@ -185,3 +185,9 @@ void xrCore::_destroy		()
     return TRUE;
 }
 #endif // XRCORE_STATIC
+
+	const char* xrCore::GetEngineVersion() {
+		static string256 buff;
+		std::snprintf(buff, sizeof(buff), "xrCore x32 build %d, %s", build_id, build_date);
+		return buff;
+	}

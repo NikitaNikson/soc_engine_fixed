@@ -13,7 +13,7 @@ class ENGINE_API CApplication	:
 	struct					sLevelInfo
 	{
 		char*				folder;
-		char*				name;
+		// char*				name;
 	};
 	string256				app_title;
 private:
