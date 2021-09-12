@@ -181,6 +181,7 @@ void CWeaponMagazinedWGrenade::OnShot		()
 		PlaySound(sndShotG, get_LastFP2());
 		
 		AddShotEffector		();
+		PlayAnimShoot		();
 		
 		//партиклы огня вылета гранаты из подствольника
 		StartFlameParticles2();
@@ -624,10 +625,15 @@ void CWeaponMagazinedWGrenade::PlayAnimHide()
 {
 	VERIFY(GetState()==eHiding);
 	
-	if(IsGrenadeLauncherAttached())
-		m_pHUD->animPlay(random_anim(mhud_hide_w_gl),TRUE,this, GetState());
+	if (IsGrenadeLauncherAttached())
+	{
+		if (!m_bGrenadeMode)
+			m_pHUD->animPlay(random_anim(mhud_hide_w_gl), TRUE, this, GetState());
+		else
+			m_pHUD->animPlay(random_anim(mhud_hide_g), TRUE, this, GetState());
+	}
 	else
-		m_pHUD->animPlay (random_anim(mhud.mhud_hide),TRUE,this, GetState());
+		m_pHUD->animPlay(random_anim(mhud.mhud_hide), TRUE, this, GetState());
 }
 
 void CWeaponMagazinedWGrenade::PlayAnimReload()
@@ -649,9 +655,9 @@ void CWeaponMagazinedWGrenade::PlayAnimIdle()
 		if(m_bGrenadeMode)
 		{
 			if(IsZoomed())
-				m_pHUD->animPlay(random_anim(mhud_idle_g_aim), FALSE, NULL, GetState());
+				m_pHUD->animPlay(random_anim(mhud_idle_g_aim), TRUE, NULL, GetState());
 			else
-				m_pHUD->animPlay(random_anim(mhud_idle_g), FALSE, NULL, GetState());
+				m_pHUD->animPlay(random_anim(mhud_idle_g), TRUE, NULL, GetState());
 		}
 		else
 		{
